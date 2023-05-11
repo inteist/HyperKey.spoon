@@ -10,8 +10,8 @@ function Overlay:init(bindings)
   self.canvas = nil
 end
 
-function Overlay:show()
-  self.canvas = self:_buildCanvas()
+function Overlay:show(sorted)
+  self.canvas = self:_buildCanvas(sorted)
   self.canvas:show(fadeTime)
 end
 
@@ -20,20 +20,23 @@ function Overlay:hide()
   self.canvas = nil
 end
 
-function Overlay:_buildCanvas()
+function Overlay:_buildCanvas(sorted)
   local layerIndexes = {
     background = 1,
     keyIndex = 2,
   }
 
-  table.sort(self.bindings, function(a, b)
-    return a.key < b.key
-  end)
+
+  if sorted then
+    table.sort(self.bindings, function(a, b)
+      return a.key < b.key
+    end)
+  end
 
   -- how much padding around the edges
   local containerPadding = 25
 
-  local itemsPerColumn = 6
+  local itemsPerColumn = #self.bindings
   local itemHeight = 25
   local itemBottomMargin = 10
   local itemContainer = itemHeight + itemBottomMargin
@@ -44,7 +47,7 @@ function Overlay:_buildCanvas()
   local defaultWidth = (containerPadding * 2) + (columnCount * columnWidth)
   local defaultHeight = (containerPadding * 2) + (itemsPerColumn * itemContainer) - itemBottomMargin
 
-  local canvas = hs.canvas.new{
+  local canvas = hs.canvas.new {
     w = defaultWidth,
     h = defaultHeight,
     x = 100,
@@ -53,6 +56,8 @@ function Overlay:_buildCanvas()
 
   -- show in center
   local frame = hs.screen.mainScreen():frame()
+
+  print(hs.inspect.inspect(frame))
 
   canvas:level("overlay")
   canvas:topLeft({
@@ -66,7 +71,7 @@ function Overlay:_buildCanvas()
       type = 'rectangle',
       action = 'fill',
       roundedRectRadii = { xRadius = 10, yRadius = 10 },
-      fillColor = rgba(24, 135, 250, 1),
+      fillColor = rgba(100, 100, 100, 0.5),
       strokeColor = { white = 1.0 },
       strokeWidth = 3.0,
       frame = { x = "0%", y = "0%", h = "100%", w = "100%", },
@@ -102,7 +107,7 @@ function Overlay:_buildCanvas()
         withShadow = true,
         shadow = {
           blurRadius = 5.0,
-          color = { alpha = 1/3 },
+          color = { alpha = 1 / 3 },
           offset = { h = -2.0, w = 2.0 },
         }
       },
@@ -111,6 +116,7 @@ function Overlay:_buildCanvas()
 
     currentLayerIndex = currentLayerIndex + 1
 
+    -- The modifier letter
     canvas:insertElement(
       {
         type = 'text',

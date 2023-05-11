@@ -31,8 +31,17 @@ function HyperKey:init(hyperMods, options)
   self.overlayTimeoutMs = options.overlayTimeoutMs or 250
   self.hyperMods = hyperMods
   self.bindings = {}
+
+  if (options.sorted == nil) then
+    self.sorted = true
+  else
+    self.sorted = options.sorted
+  end
+
   self.overlay = Overlay:new(self.bindings)
   self.holdTap = self:_createOverlayTap()
+
+  print(hs.inspect.inspect(self))
 end
 
 function HyperKey:bind(displayedKey, bindKey)
@@ -74,7 +83,7 @@ end
 
 function HyperKey:_createOverlayTap()
   local onHold = function()
-    self.overlay:show()
+    self.overlay:show(self.sorted)
   end
 
   local onRelease = function()
