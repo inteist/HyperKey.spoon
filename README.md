@@ -1,4 +1,25 @@
-# 🌌 ⌨️ HyperKey.spoon
+```
+
+███████╗ ██████╗ ██████╗ ██╗  ██╗
+██╔════╝██╔═══██╗██╔══██╗██║ ██╔╝
+█████╗  ██║   ██║██████╔╝█████╔╝ 
+██╔══╝  ██║   ██║██╔══██╗██╔═██╗ 
+██║     ╚██████╔╝██║  ██║██║  ██╗
+╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+                                 
+```
+
+
+# **ATTENTION** - this is a fork
+This is a fork of the [HyperKey](https://github.com/dbalatero/HyperKey.spoon.git) spoon 
+This was not updated in 3 years originally and the changes I wanted to make were quite opinionated
+So I made the decision to fork it instead of making a pull request
+
+
+
+----
+
+# ⌨️ HyperKey.spoon
 
 If you have a lot of global key binds to `super`, `hyper`, or other modifier
 keys, this [Hammerspoon](https://www.hammerspoon.org/docs/index.html) library lets you easily setup your key binds to switch/launch
