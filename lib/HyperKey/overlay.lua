@@ -57,7 +57,7 @@ function Overlay:_buildCanvas(sorted)
   -- show in center
   local frame = hs.screen.mainScreen():frame()
 
-  print(hs.inspect.inspect(frame))
+  -- print(hs.inspect.inspect(frame))
 
   canvas:level("overlay")
   canvas:topLeft({

@@ -41,7 +41,7 @@ function HyperKey:init(hyperMods, options)
   self.overlay = Overlay:new(self.bindings)
   self.holdTap = self:_createOverlayTap()
 
-  print(hs.inspect.inspect(self))
+  --print(hs.inspect.inspect(self))
 end
 
 function HyperKey:bind(displayedKey, bindKey)
