@@ -27,6 +27,9 @@ end
 
 function ApplicationBinding:launch()
   hs.application.launchOrFocus(self.applicationPath)
+
+  local allWindows = true
+  hs.application.frontmostApplication():activate(allWindows)
 end
 
 ------
